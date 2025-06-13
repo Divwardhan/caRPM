@@ -10,10 +10,11 @@ import CustomerReviews from './Components/CustomerReviews'
 import Footer from './Components/Footer'
 import TermsAndConditions from './Components/TermsandConditions'
 import Privacy from './Components/Privacy'
-
+import ScrollToTop from './Components/ScrollToTop'
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         {/* Home Page */}

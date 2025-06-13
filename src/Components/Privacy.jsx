@@ -1,11 +1,14 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Privacy = () => {
   const navigate = useNavigate();
 
   return (
+    <>
+    <Navbar/>
     <div className="privacy-policy min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center mb-8">
@@ -105,6 +108,7 @@ Zymbia may change all or part of this Privacy Policy from time to time. An up-to
         </div>
       </div>
     </div>
+    </>
   );
 };
 
