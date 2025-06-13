@@ -1,7 +1,29 @@
-import React from 'react';
-import { CheckCircle, ArrowRight, ShoppingBag, Smartphone } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { CheckCircle, ShoppingBag, Smartphone } from 'lucide-react';
 
 const CategorySection = () => {
+  const [garageProStoreUrl, setGarageProStoreUrl] = useState('https://garagepro.store');
+
+  useEffect(() => {
+    const checkLocation = async () => {
+      try {
+        const res = await fetch('https://ipwho.is/');
+        const data = await res.json();
+        const countryCode = data.country_code;
+        console.log("User Country Code:", countryCode);   // <-- Add this
+
+        if (countryCode === 'IN') {
+          setGarageProStoreUrl('https://garagepro.in');
+        }
+      } catch (err) {
+        console.error("Location fetch failed:", err);
+      }
+    };
+
+    checkLocation();
+  }, []);
+
+  // move brands array inside render so it uses updated state
   const brands = [
     {
       title: 'GaragePro',
@@ -16,7 +38,7 @@ const CategorySection = () => {
       accentColor: 'text-blue-400',
       ctas: [
         { label: 'Get App', icon: Smartphone, href: 'https://play.google.com/store/apps/details?id=com.zymbia.carpm_mechanic' },
-        { label: 'Visit Store', icon: ShoppingBag, href: 'https://garagepro.in/' },
+        { label: 'Visit Store', icon: ShoppingBag, href: garageProStoreUrl },
       ],
     },
     {
@@ -97,6 +119,8 @@ const CategorySection = () => {
                     <a
                       key={i}
                       href={cta.href}
+                      target="_blank"
+              rel="noopener noreferrer"
                       className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/30 text-white py-3 px-6 rounded-full text-base font-medium transition-all duration-300 shadow-md hover:shadow-xl"
                     >
                       <cta.icon size={18} />
@@ -153,6 +177,8 @@ const CategorySection = () => {
                     <a
                       key={i}
                       href={cta.href}
+                      target="_blank"
+              rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/30 text-white py-3 px-6 rounded-full text-base font-medium transition-all duration-300 shadow-md hover:shadow-xl"
                     >
                       <cta.icon size={18} />

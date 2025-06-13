@@ -1,16 +1,26 @@
-import React from 'react';
-import {useState} from 'react';
+import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import carpm from '../assets/cpmlogo.svg';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHomePage = location.pathname === '/';
+
   const scrollToId = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (isHomePage) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      setIsMenuOpen(false);
+    } else {
+      // Redirect to homepage and scroll after load using state
+      navigate('/', { state: { scrollTo: id } });
     }
-    setIsMenuOpen(false);
   };
 
   return (
@@ -20,7 +30,6 @@ const Navbar = () => {
         <div className="flex items-center space-x-1 cursor-pointer" onClick={() => scrollToId('hero')}>
           <img src={carpm} alt="CarPM Logo" className="w-10 h-10" />
           <span className="text-xl font-bold text-black">CarPM</span>
-          
         </div>
 
         {/* Desktop Nav Links */}
@@ -32,13 +41,25 @@ const Navbar = () => {
           <span onClick={() => scrollToId('footer')} className="cursor-pointer hover:text-blue-700 transition">Contact</span>
         </div>
 
-        {/* Desktop Button */}
-        <button
-          onClick={() => scrollToId('category')}
-          className="hidden md:block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition"
-        >
-          Get Started
-        </button>
+        {/* Desktop External Buttons */}
+        <div className="hidden md:flex space-x-3">
+          <a
+            href="https://garagepro.in/blogs/news"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gray-100 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-200 transition font-medium"
+          >
+            Blogs
+          </a>
+          <a
+            href="https://carpm.in/codes/dtcs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition font-medium"
+          >
+            Search Codes
+          </a>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -58,16 +79,26 @@ const Navbar = () => {
             <div onClick={() => scrollToId('about')} className="block py-2 text-gray-700 hover:text-blue-700 cursor-pointer">About</div>
             <div onClick={() => scrollToId('reviews')} className="block py-2 text-gray-700 hover:text-blue-700 cursor-pointer">Reviews</div>
             <div onClick={() => scrollToId('footer')} className="block py-2 text-gray-700 hover:text-blue-700 cursor-pointer">Contact</div>
-            <button
-              onClick={() => scrollToId('category')}
-              className="w-full bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition mt-2"
+            <a
+              href="https://garagepro.in/blogs/news"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-gray-100 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-200 transition"
             >
-              Get Started
-            </button>
+              Blogs
+            </a>
+            <a
+              href="https://carpm.in/codes/dtcs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition"
+            >
+              Search Codes
+            </a>
           </div>
         </div>
       )}
-      
+
       <div className="h-1 bg-gradient-to-r from-blue-700 to-blue-500"></div>
     </nav>
   );
