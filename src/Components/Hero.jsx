@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ArrowRight, Play, Wrench, Zap, Shield, CheckCircle, ShoppingBag, Smartphone, Star, Facebook, Instagram, Linkedin, Mail, Phone, Menu, X } from 'lucide-react';
 import image from '../assets/garageimg.png'; 
+import phoneimage from '../assets/garageimgphone.png';
 
 const Hero = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,13 +17,20 @@ const Hero = () => {
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white min-h-[100vh] flex items-center overflow-hidden pt-16">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Your background image - made more visible */}
-          <img 
-            src={image} 
-            alt="Background" 
-            className="w-full h-full object-cover opacity-100 mix-blend-overlay"
-          />
-          
+          {/* Desktop image */}
+  <img 
+    src={image} 
+    alt="Background" 
+    className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center md:object-top opacity-100 mix-blend-overlay transition-all duration-500"
+  />
+  
+  {/* Mobile image */}
+  <img 
+    src={phoneimage} 
+    alt="Background" 
+    className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center opacity-100 mix-blend-overlay transition-all duration-500"
+  />
+
           {/* Existing animated elements */}
           <div className="absolute top-20 left-10 w-16 sm:w-32 h-16 sm:h-32 bg-white/5 rounded-full blur-xl animate-pulse" />
           <div className="absolute top-40 right-20 w-24 sm:w-48 h-24 sm:h-48 bg-yellow-400/10 rounded-full blur-2xl animate-pulse delay-1000" />
