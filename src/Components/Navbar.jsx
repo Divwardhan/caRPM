@@ -49,7 +49,7 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 top-0 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToId('hero')}>
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToId('home')}>
           <img 
             src={scrolled ? carpmBlack : carpmWhite} 
             alt="CaRPM Logo" 
