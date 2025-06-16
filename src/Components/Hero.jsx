@@ -79,7 +79,7 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-4 lg:px-0">
-              <a onClick={() => scrollToId('category')} className="group bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center cursor-pointer">
+              <a onClick={() => scrollToId('ourbrands')} className="group bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center cursor-pointer">
                 Explore Solutions
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
