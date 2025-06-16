@@ -14,7 +14,7 @@ import ScrollToTop from './Components/ScrollToTop'
 import Video from './Components/Video'
 function App() {
   return (
-    <Router>
+    <Router basename="/home">
       <ScrollToTop />
       <Navbar />
       <Routes>
