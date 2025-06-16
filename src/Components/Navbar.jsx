@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import carpm from '../assets/cpmlogo.svg';
+import carpmBlack from '../assets/cpmlogo.svg';
+import carpmWhite from '../assets/cpmlogo-white.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -12,42 +14,72 @@ const Navbar = () => {
 
   const scrollToId = (id) => {
     if (isHomePage) {
-      const el = document.getElementById(id);
+      
+      var el = document.getElementById(id);
+      
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
       }
       setIsMenuOpen(false);
     } else {
-      // Redirect to homepage and scroll after load using state
       navigate('/', { state: { scrollTo: id } });
     }
   };
 
+  useEffect(() => {
+    // If not on homepage, force navbar to scrolled (black content)
+    if (!isHomePage) {
+      setScrolled(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHomePage]);
+
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50 top-0">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo & Subtext */}
-        <div className="flex items-center space-x-1 cursor-pointer" onClick={() => scrollToId('hero')}>
-          <img src={carpm} alt="CarPM Logo" className="w-10 h-10" />
-          <span className="text-xl font-bold text-black">CarPM</span>
+    <nav className={`fixed w-full z-50 top-0 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToId('hero')}>
+          <img 
+            src={scrolled ? carpmBlack : carpmWhite} 
+            alt="CaRPM Logo" 
+            className="w-10 h-10 rounded-xl shadow-sm transition-all duration-300"
+          />
+          <span className={`text-2xl font-semibold tracking-tight transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'}`}>
+            CaRPM
+          </span>
         </div>
 
-        {/* Desktop Nav Links */}
-        <div className="hidden md:flex space-x-6 lg:space-x-8 text-sm text-gray-700">
-          <span onClick={() => scrollToId('hero')} className="cursor-pointer hover:text-blue-700 transition">Home</span>
-          <span onClick={() => scrollToId('category')} className="cursor-pointer hover:text-blue-700 transition">Our Brands</span>
-          <span onClick={() => scrollToId('about')} className="cursor-pointer hover:text-blue-700 transition">About</span>
-          <span onClick={() => scrollToId('reviews')} className="cursor-pointer hover:text-blue-700 transition">Reviews</span>
-          <span onClick={() => scrollToId('footer')} className="cursor-pointer hover:text-blue-700 transition">Contact</span>
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-8 text-base font-medium">
+          {['Home', 'Our Brands', 'About', 'Reviews', 'Contact'].map((item, idx) => (
+            <span
+              key={idx}
+              onClick={() => scrollToId(item.toLowerCase().replace(' ', ''))}
+              className={`cursor-pointer transition-colors duration-300 ${scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-300'}`}
+            >
+              {item}
+            </span>
+          ))}
         </div>
 
-        {/* Desktop External Buttons */}
-        <div className="hidden md:flex space-x-3">
+        {/* Desktop Buttons */}
+        <div className="hidden md:flex gap-4">
           <a
             href="https://garagepro.in/blogs/news"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gray-100 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-200 transition font-medium"
+            className={`px-5 py-2 rounded-full transition-all duration-300 shadow-sm ${scrolled ? 'bg-gray-100 text-gray-900 hover:bg-gray-200' : 'bg-white/30 text-white hover:bg-white/40'}`}
           >
             Blogs
           </a>
@@ -55,35 +87,36 @@ const Navbar = () => {
             href="https://carpm.in/codes/dtcs"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition font-medium"
+            className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-700 hover:to-blue-600 transition-all duration-300 shadow-md"
           >
             Search Codes
           </a>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`md:hidden p-2 transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'}`}>
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t shadow-lg">
-          <div className="px-4 py-2 space-y-2">
-            <div onClick={() => scrollToId('hero')} className="block py-2 text-gray-700 hover:text-blue-700 cursor-pointer">Home</div>
-            <div onClick={() => scrollToId('category')} className="block py-2 text-gray-700 hover:text-blue-700 cursor-pointer">Our Brands</div>
-            <div onClick={() => scrollToId('about')} className="block py-2 text-gray-700 hover:text-blue-700 cursor-pointer">About</div>
-            <div onClick={() => scrollToId('reviews')} className="block py-2 text-gray-700 hover:text-blue-700 cursor-pointer">Reviews</div>
-            <div onClick={() => scrollToId('footer')} className="block py-2 text-gray-700 hover:text-blue-700 cursor-pointer">Contact</div>
+        <div className={`md:hidden transition-all duration-300 ${scrolled ? 'bg-white' : 'bg-white/20 backdrop-blur-sm'}`}>
+          <div className="flex flex-col px-6 py-4 gap-4">
+            {['Home', 'Our Brands', 'About', 'Reviews', 'Contact'].map((item, idx) => (
+              <div
+                key={idx}
+                onClick={() => scrollToId(item.toLowerCase().replace(' ', ''))}
+                className={`font-medium cursor-pointer transition-colors duration-300 ${scrolled ? 'text-gray-900 hover:text-blue-600' : 'text-white hover:text-blue-300'}`}
+              >
+                {item}
+              </div>
+            ))}
             <a
               href="https://garagepro.in/blogs/news"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center bg-gray-100 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-200 transition"
+              className={`w-full text-center px-4 py-3 rounded-full transition-all duration-300 shadow-sm ${scrolled ? 'bg-gray-100 text-gray-900 hover:bg-gray-200' : 'bg-white/20 text-white hover:bg-white/30'}`}
             >
               Blogs
             </a>
@@ -91,15 +124,13 @@ const Navbar = () => {
               href="https://carpm.in/codes/dtcs"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition"
+              className="w-full text-center px-4 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-700 hover:to-blue-600 transition-all duration-300 shadow-md"
             >
               Search Codes
             </a>
           </div>
         </div>
       )}
-
-      <div className="h-1 bg-gradient-to-r from-blue-700 to-blue-500"></div>
     </nav>
   );
 };

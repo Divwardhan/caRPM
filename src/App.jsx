@@ -11,6 +11,7 @@ import Footer from './Components/Footer'
 import TermsAndConditions from './Components/TermsandConditions'
 import Privacy from './Components/Privacy'
 import ScrollToTop from './Components/ScrollToTop'
+import Video from './Components/Video'
 function App() {
   return (
     <Router>
@@ -22,11 +23,12 @@ function App() {
           path="/"
           element={
             <>
-              <div id="hero" className="pt-15"><Hero /></div>
-              <div id="category"><CategorySection /></div>
+              <div id="home" className=""><Hero /></div>
+              <div id="ourbrands"><CategorySection /></div>
               <div id="about"><AboutSection /></div>
+              <div id="video"><Video /></div>
               <div id="reviews"><CustomerReviews /></div>
-              <div id="footer"><Footer /></div>
+              <div id="contact"><Footer /></div>
             </>
           }
         />

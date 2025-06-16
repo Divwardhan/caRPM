@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ArrowRight, Play, Wrench, Zap, Shield, CheckCircle, ShoppingBag, Smartphone, Star, Facebook, Instagram, Linkedin, Mail, Phone, Menu, X } from 'lucide-react';
-import image from '../assets/garageimg.png'; 
-import phoneimage from '../assets/garageimgphone.png';
+import image from '../assets/bg.png'; 
+import phoneimage from '../assets/bgphone.png';
 
 const Hero = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,8 +14,10 @@ const Hero = () => {
   };
   return (
     <>
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white min-h-[100vh] flex items-center overflow-hidden pt-16">
+      <section className="relative bg-gradient-to-br from-gray-600 via-gray-500 to-slate-500
+ text-white min-h-[100vh] flex items-center overflow-hidden pt-16">
         {/* Animated Background Elements */}
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/10 via-transparent to-purple-900/10" /> */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Desktop image */}
   <img 
@@ -60,7 +62,7 @@ const Hero = () => {
             </p>
 
             {/* Feature highlights */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-6 mb-8 sm:mb-10">
+            {/* <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-6 mb-8 sm:mb-10">
               <div className="flex items-center bg-white/5 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 border border-white/10">
                 <Wrench size={16} className="text-blue-300 mr-2" />
                 <span className="text-xs sm:text-sm">Pro Diagnostics</span>
@@ -73,7 +75,7 @@ const Hero = () => {
                 <Zap size={16} className="text-yellow-300 mr-2" />
                 <span className="text-xs sm:text-sm">Parts Catalog</span>
               </div>
-            </div>
+            </div> */}
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-4 lg:px-0">
@@ -81,7 +83,7 @@ const Hero = () => {
                 Explore Solutions
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
-              <a className="group bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 hover:border-white/50 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer">
+              <a onClick={()=>scrollToId('video')} className="group bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 hover:border-white/50 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer">
                 <Play size={16} className="mr-2 group-hover:scale-110 transition-transform duration-300" />
                 Watch Demo
               </a>
@@ -89,49 +91,12 @@ const Hero = () => {
           </div>
 
           {/* Visual Section */}
-          <div className="flex-1 max-w-sm lg:max-w-lg w-full">
-            <div className="relative">
-              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-white/20 shadow-2xl">
-                <div onClick={() => scrollToId('category')} className="space-y-4 sm:space-y-6">
-                  {/* GaragePro Card */}
-                  <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/10 transform hover:scale-105 transition-all duration-300 hover:shadow-lg cursor-pointer">
-                    <div className="flex items-center mb-2 sm:mb-3">
-                      <div className="w-2 sm:w-3 h-2 sm:h-3 bg-blue-400 rounded-full mr-2 sm:mr-3"></div>
-                      <h3 className="font-bold text-base sm:text-lg">GaragePro</h3>
-                    </div>
-                    <p className="text-xs sm:text-sm text-gray-200">Advanced diagnostic tools & monitoring</p>
-                  </div>
-
-                  {/* GarageBook Card */}
-                  <div onClick={() => scrollToId('category')} className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/10 transform hover:scale-105 transition-all duration-300 hover:shadow-lg ml-4 sm:ml-8 cursor-pointer">
-                    <div className="flex items-center mb-2 sm:mb-3">
-                      <div className="w-2 sm:w-3 h-2 sm:h-3 bg-emerald-400 rounded-full mr-2 sm:mr-3"></div>
-                      <h3 className="font-bold text-base sm:text-lg">GarageBook</h3>
-                    </div>
-                    <p className="text-xs sm:text-sm text-gray-200">Complete workshop management</p>
-                  </div>
-
-                  {/* AutoCat Card */}
-                  <div onClick={() => scrollToId('category')} className="bg-gradient-to-r from-orange-500/20 to-red-500/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/10 transform hover:scale-105 transition-all duration-300 hover:shadow-lg cursor-pointer">
-                    <div className="flex items-center mb-2 sm:mb-3">
-                      <div className="w-2 sm:w-3 h-2 sm:h-3 bg-orange-400 rounded-full mr-2 sm:mr-3"></div>
-                      <h3 className="font-bold text-base sm:text-lg">AutoCat</h3>
-                    </div>
-                    <p className="text-xs sm:text-sm text-gray-200">Digital parts catalogue system</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating elements - hidden on mobile */}
-              <div className="hidden sm:block absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full shadow-lg animate-bounce"></div>
-              <div className="hidden sm:block absolute -bottom-6 -left-6 w-6 h-6 bg-white/30 rounded-full shadow-lg animate-pulse"></div>
-              <div className="hidden sm:block absolute top-1/2 -right-8 w-4 h-4 bg-blue-300 rounded-full shadow-lg animate-ping"></div>
-            </div>
-          </div>
+          
+          
         </div>
 
         {/* Bottom gradient fade - extended to include bridge functionality */}
-        <div className="absolute bottom-0 left-0 right-0 h-28 sm:h-56 bg-gradient-to-t from-black via-slate-900/60 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-28 sm:h-56 bg-gradient-to-t from-gray-900 via-gray-800/60 to-transparent"></div>
       </section>
 
     </>

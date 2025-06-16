@@ -27,58 +27,57 @@ const CustomerReviews = () => {
     ];
   
     return (
-      <section className="relative min-h-[60vh] py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-[#0f182c] via-[#0f182c] to-[#1a337c] text-white overflow-hidden">
-        {/* Background glows */}
-        <div className="absolute top-[-50px] left-[10%] w-36 sm:w-72 h-36 sm:h-72 bg-white/5 blur-3xl rounded-full z-0" />
-        <div className="absolute bottom-[-80px] right-[15%] w-48 sm:w-96 h-48 sm:h-96 bg-yellow-500/10 blur-2xl rounded-full z-0" />
-  
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4">
+      <section className="relative min-h-[60vh] py-20 px-4 sm:px-6 lg:px-8 bg-[#e7ecf8] text-gray-900">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 text-[#1a3687]">
             What Our Customers Say
           </h2>
-          <p className="text-center text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-12">
+          <p className="text-center text-gray-700 text-base sm:text-lg max-w-2xl mx-auto mb-12">
             Real stories from real users across India. Discover how CaRPM is empowering professionals.
           </p>
   
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {reviews.map((review, idx) => (
-              <div
-                key={idx}
-                className="relative bg-gradient-to-br from-slate-800/40 to-slate-900/50 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
-              >
-                {/* Avatar */}
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={review.image}
-                    alt={review.name}
-                    className="w-12 sm:w-14 h-12 sm:h-14 rounded-full border-2 border-blue-500 shadow-lg"
-                  />
-                  <div>
-                    <h4 className="font-semibold text-base sm:text-lg">{review.name}</h4>
-                  </div>
-                </div>
-  
-                {/* Review */}
-                <p className="text-gray-300 text-sm sm:text-base mb-4 leading-relaxed line-clamp-6">
-                  {review.text}
-                </p>
-  
-                {/* Stars */}
-                <div className="flex items-center space-x-1">
-                  {Array.from({ length: review.stars }, (_, i) => (
-                    <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-  
-                {/* Glow Border on Hover */}
-                <div className="absolute inset-0 rounded-2xl pointer-events-none group-hover:ring-2 group-hover:ring-blue-400/40 transition duration-300"></div>
-              </div>
-            ))}
-          </div>
+<div className="grid gap-12 sm:gap-14 md:grid-cols-2 lg:grid-cols-3">
+  {reviews.map((review, idx) => (
+    <div
+      key={idx}
+      className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100"
+    >
+      {/* Avatar */}
+      <div className="flex items-center gap-4 mb-5">
+        <img
+          src={review.image}
+          alt={review.name}
+          className="w-14 h-14 rounded-full border-2 border-[#1a3687] shadow-sm"
+        />
+        <div>
+          <h4 className="font-semibold text-lg text-[#1a3687]">{review.name}</h4>
+          <p className="text-sm text-gray-500">{review.role}</p>
         </div>
-        
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-12 sm:h-24 bg-gradient-to-t from-[#0f182c] to-transparent" />
+      </div>
+
+      {/* Review */}
+      <p className="text-gray-700 text-sm sm:text-base mb-5 leading-relaxed">
+        {review.text}
+      </p>
+
+      {/* Stars */}
+      <div className="flex items-center space-x-1">
+        {Array.from({ length: review.stars }, (_, i) => (
+          <Star key={i} size={18} className="text-yellow-400 fill-yellow-400" />
+        ))}
+      </div>
+
+      {/* Glow Border on Hover */}
+      <div className="absolute inset-0 rounded-2xl pointer-events-none group-hover:ring-2 group-hover:ring-blue-300/40 transition duration-300"></div>
+    </div>
+  ))}
+</div>
+
+        </div>
+
+        {/* Decorative Gradient Blur Background */}
+        <div className="absolute -top-20 left-10 w-72 h-72 bg-[#dbe4f5] blur-3xl rounded-full opacity-60 z-0"></div>
+        <div className="absolute -bottom-28 right-10 w-96 h-96 bg-[#cfd9f0] blur-3xl rounded-full opacity-60 z-0"></div>
       </section>
     );
   };
