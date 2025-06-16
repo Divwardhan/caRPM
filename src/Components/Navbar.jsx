@@ -61,7 +61,8 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8 text-base font-medium">
+        <div className="hidden lg:flex items-center gap-8 text-base font-medium">
+
           {['Home', 'Our Brands', 'About', 'Reviews', 'Contact'].map((item, idx) => (
             <span
               key={idx}
@@ -74,7 +75,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex gap-4">
+<div className="hidden lg:flex gap-4">
           <a
             href="https://garagepro.in/blogs/news"
             target="_blank"
@@ -94,14 +95,14 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`md:hidden p-2 transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'}`}>
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`lg:hidden p-2 transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'}`}>
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className={`md:hidden transition-all duration-300 ${scrolled ? 'bg-white' : 'bg-white/20 backdrop-blur-sm'}`}>
+        <div className={`lg:hidden transition-all duration-300 ${scrolled ? 'bg-white' : 'bg-white/20 backdrop-blur-sm'}`}>
           <div className="flex flex-col px-6 py-4 gap-4">
             {['Home', 'Our Brands', 'About', 'Reviews', 'Contact'].map((item, idx) => (
               <div
