@@ -80,7 +80,7 @@ const Footer = () => {
           <Link to="/terms-and-conditions" className="hover:text-gray-800 transition">Terms & Conditions</Link> | 
           <Link to="/privacy-policy" className="hover:text-gray-800 transition ml-2">Privacy Policy</Link>
         </div>
-        &copy; {new Date().getFullYear()} CaRPM Technologies. All rights reserved.
+        &copy; {new Date().getFullYear()} Zymbia Interactive Technologies Private Limited . All rights reserved.
       </div>
     </footer>
   );
