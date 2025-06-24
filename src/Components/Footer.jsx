@@ -52,7 +52,7 @@ const Footer = () => {
           <h4 className="text-lg font-semibold mb-3 text-[#1a3687]">Contact</h4>
           <ul className="space-y-3 text-gray-600 text-sm">
             <li className="flex items-center justify-center sm:justify-start gap-2">
-              <Phone size={16} /> +91 80690 15000
+              <Phone size={16} /> +91 73530 07699
             </li>
             <li className="flex items-center justify-center sm:justify-start gap-2">
               <Mail size={16} /> <a href="mailto:fix@carpm.in" className="hover:text-blue-600">fix@carpm.in</a>
