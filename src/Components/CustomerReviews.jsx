@@ -5,21 +5,21 @@ const CustomerReviews = () => {
     const reviews = [
       {
         name: 'Colvin McAllister',
-        role: 'Workshop Owner, Delhi',
+        role: '',
         text: "I love the app. Easy to use. I had a problem setting up a new account. Customer service was awesome! The chat feature was very helpful and emailing the fix guys was amazing. Quick response and fixed my account very quickly. If you're looking for this type app, I highly recommend.",
         stars: 5,
         image: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
       },
       {
         name: 'Kishor Dabholkar',
-        role: 'Fleet Manager, Bangalore',
+        role: '',
         text: 'Garage Book is a very good software. It is very useful for my workshop and my work is reduced. Job card, vehicle history, billing, accounting, customer reminder, photos of the vehicle before and after work are saved. And specially, I save the job card. And take a print of the bill and give it to the customer, so a special impression is made on the customers of our workshop. Thank you very much to the garage book team.',
         stars: 5,
         image: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
       },
       {
         name: 'Ravindra Kumar Bunkar',
-        role: 'Auto Parts Retailer, Pune',
+        role: '',
         text: 'I was looking for clutch kit for my car. I ordered from GaragePro spare parts. Very happy with their price and fastest delivery. I recommend everyone to purchase directly from GaragePro instead local shop. You will get better price, better quality and fastest delivery service. There customer support is excellent .',
         stars: 5,
         image: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
@@ -51,7 +51,7 @@ const CustomerReviews = () => {
         />
         <div>
           <h4 className="font-semibold text-lg text-[#1a3687]">{review.name}</h4>
-          <p className="text-sm text-gray-500">{review.role}</p>
+          {/* <p className="text-sm text-gray-500">{review.role}</p> */}
         </div>
       </div>
 
